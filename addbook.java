@@ -1,5 +1,7 @@
 package addbook;
 
+import java.util.Scanner;
+
 public class addbook {
 	
 	private String  fname,lname,city,address,zip,email,phone_number;
@@ -28,8 +30,39 @@ public class addbook {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("welcome to address book"); 
-		addbook ab=new addbook("shri","shetty","udupi","karnataka","ziip","shri@","978465");
-		ab.display();
+		 String fname,lname,city,address,zip,email,phone_number;
+		addbook[] ab=new addbook[10];
+        int n;
+		
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("how many entries :");//number of entries
+		n=sc.nextInt();
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("First name :");
+			fname=sc.next();
+			System.out.println("Last name :");
+			lname=sc.next();
+			System.out.println("City name :");
+			city=sc.next();
+			System.out.println("address :");
+			address=sc.next();
+			System.out.println("zip :");
+			zip=sc.next();
+			System.out.println("email :");
+			email=sc.next();
+			System.out.println("phone number :");
+			phone_number=sc.next();
+			ab[i]=new addbook( fname,lname,city,address,zip,email,phone_number);
+		}
+		System.out.println("details::");
+		for(int j=0;j<n;j++)
+		{
+			ab[j].display();	
+		}
+		
+		
 	}
 
 }
