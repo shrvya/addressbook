@@ -37,6 +37,14 @@ public class addressbook {
 		System.out.println("how many entries :");//number of entries
 		n=sc.nextInt();
 		addressbook ad=new addressbook();
+		addressbook[] ad1=new addressbook[10];
+		int choice,c=0;
+		while(c!=1) {
+		System.out.println("enter the choice 1.Add 2.edit 3.Display");
+		choice=sc.nextInt();
+		switch(choice)
+		{
+		case 1:System.out.println("Add the details");
 		for(int i=0;i<n;i++)//loop to enter n values
 		{
 			System.out.println("First name :");
@@ -56,13 +64,43 @@ public class addressbook {
 			
 			
 		}
-		
-		for(int j=0;j<n;j++)
-		{
-			System.out.println("display contents");
-			ad.display();
+		break;
+		case 2:System.out.println("enter the name of person you want to edit");
+		      String name=sc.next();
+		      for(int i=0;i<n;i++)//loop to enter n values
+				{
+		    	  if(ad.fname.equals(name)) {
+					System.out.println("First name :");
+					ad.fname=sc.next();
+					System.out.println("Last name :");
+					ad.lname=sc.next();
+					System.out.println("City name :");
+					ad.city=sc.next();
+					System.out.println("address :");
+					ad.address=sc.next();
+					System.out.println("zip :");
+					ad.zip=sc.next();
+					System.out.println("email :");
+					ad.email=sc.next();
+					System.out.println("phone number :");
+					ad.phone_number=sc.next();
+		    	  }
+		    	  else {
+		    		  System.out.println("name not found");
+		    	  }	
+				}
+		      break;
+		case 3: for(int j=0;j<n;j++)
+				{
+					System.out.println("display contents");
+					ad.display();
+				}
+		          break;
+		          default:c=1;
+		        		  break;
 		}
-
+		}
+		
 	}
 
 }
