@@ -1,10 +1,19 @@
 package addressbook;
-
 import java.util.Scanner;
-
 public class addressbook {
+	public static int n=0;
 	private String  fname,lname,city,address,zip,email,phone_number;
-	public void  addressbook( String fname, String lname, String city, String address, String zip, String email, String phone_number)
+	public addressbook( String fname, String lname, String city, String address, String zip, String email, String phone_number)
+	{
+		this.fname=fname;
+		this.lname=lname;
+		this.city=city;
+		this.address=address;
+		this.zip=zip;
+		this.email=email;
+		this.phone_number=phone_number;	
+	}
+	public void  edit( String fname, String lname, String city, String address, String zip, String email, String phone_number)
 	{
 		this.fname=fname;
 		this.lname=lname;
@@ -25,18 +34,16 @@ public class addressbook {
 		System.out.println("phone number  is :"+phone_number);
 	}
 	
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String fname,lname,city,address ,zip ,email ,phone_number;
 		System.out.println("welcome to address book");//welcome message
-		int n;
+		
 		
 		Scanner sc=new Scanner(System.in);
 		
-		System.out.println("how many entries :");//number of entries
-		n=sc.nextInt();
-		addressbook ad=new addressbook();
+		
+		
 		addressbook[] ad1=new addressbook[10];
 		int choice,c=0;
 		while(c!=1) {
@@ -45,62 +52,66 @@ public class addressbook {
 		switch(choice)
 		{
 		case 1:System.out.println("Add the details");
-		for(int i=0;i<n;i++)//loop to enter n values
-		{
+		
 			System.out.println("First name :");
-			ad.fname=sc.next();
+			fname=sc.next();
 			System.out.println("Last name :");
-			ad.lname=sc.next();
+			lname=sc.next();
 			System.out.println("City name :");
-			ad.city=sc.next();
+			city=sc.next();
 			System.out.println("address :");
-			ad.address=sc.next();
+			address=sc.next();
 			System.out.println("zip :");
-			ad.zip=sc.next();
+			zip=sc.next();
 			System.out.println("email :");
-			ad.email=sc.next();
+			email=sc.next();
 			System.out.println("phone number :");
-			ad.phone_number=sc.next();
-			
-			
-		}
-		break;
+			phone_number=sc.next();
+			ad1[n]=new addressbook(fname,lname,city,address,zip,email,phone_number);
+		    n++;
+		    break;
 		case 2:System.out.println("enter the name of person you want to edit");
 		      String name=sc.next();
 		      for(int i=0;i<n;i++)//loop to enter n values
 				{
-		    	  if(ad.fname.equals(name)) {
+		    	  if(ad1[i].fname.equals(name)) {
 					System.out.println("First name :");
-					ad.fname=sc.next();
+					fname=sc.next();
 					System.out.println("Last name :");
-					ad.lname=sc.next();
+					lname=sc.next();
 					System.out.println("City name :");
-					ad.city=sc.next();
+					city=sc.next();
 					System.out.println("address :");
-					ad.address=sc.next();
+					address=sc.next();
 					System.out.println("zip :");
-					ad.zip=sc.next();
+					zip=sc.next();
 					System.out.println("email :");
-					ad.email=sc.next();
+					email=sc.next();
 					System.out.println("phone number :");
-					ad.phone_number=sc.next();
+					phone_number=sc.next();
+					ad1[i].edit(fname,lname,city,address ,zip ,email ,phone_number);
 		    	  }
 		    	  else {
 		    		  System.out.println("name not found");
 		    	  }	
 				}
 		      break;
-		case 3: for(int j=0;j<n;j++)
+		case 3: if(n==0)
+		{
+			System.out.println("no entries");
+		}
+			for(int j=0;j<n;j++)
 				{
 					System.out.println("display contents");
-					ad.display();
+					ad1[j].display();
 				}
 		          break;
-		          default:c=1;
+		default:c=1;
 		        		  break;
 		}
+
 		}
-		
+
 	}
 
 }
