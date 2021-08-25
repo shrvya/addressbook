@@ -1,7 +1,10 @@
 package addressbook;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class addressbook {
 	public static int n=0;
+	
+	public static ArrayList<addressbook>contact=new ArrayList<>();
 	private String  fname,lname,city,address,zip,email,phone_number;
 	public addressbook( String fname, String lname, String city, String address, String zip, String email, String phone_number)
 	{
@@ -33,6 +36,10 @@ public class addressbook {
 		System.out.println("email is :"+email);
 		System.out.println("phone number  is :"+phone_number);
 	}
+	public static void delete(addressbook object)
+	{
+		contact.remove(object);
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -44,16 +51,16 @@ public class addressbook {
 		
 		
 		
-		addressbook[] ad1=new addressbook[10];
+		
 		int choice,c=0;
 		while(c!=1) {
-		System.out.println("enter the choice 1.Add 2.edit 3.Display");
+		System.out.println("enter the choice 1.Add 2.edit 3.Display 4.delete");
 		choice=sc.nextInt();
 		switch(choice)
 		{
 		case 1:System.out.println("Add the details");
 		
-			System.out.println("First name :");
+			System.out.println("First name1 :");
 			fname=sc.next();
 			System.out.println("Last name :");
 			lname=sc.next();
@@ -67,14 +74,17 @@ public class addressbook {
 			email=sc.next();
 			System.out.println("phone number :");
 			phone_number=sc.next();
-			ad1[n]=new addressbook(fname,lname,city,address,zip,email,phone_number);
-		    n++;
+			contact.add(new addressbook(fname,lname,city,address,zip,email,phone_number));
+		    
 		    break;
 		case 2:System.out.println("enter the name of person you want to edit");
 		      String name=sc.next();
-		      for(int i=0;i<n;i++)//loop to enter n values
+		      
+		      for(int i=0;i<contact.size();i++)//loop to enter n values
 				{
-		    	  if(ad1[i].fname.equals(name)) {
+		    	  addressbook obj=contact.get(i);
+		    	  if(obj.fname.equals(name)) 
+		    	  {
 					System.out.println("First name :");
 					fname=sc.next();
 					System.out.println("Last name :");
@@ -89,7 +99,7 @@ public class addressbook {
 					email=sc.next();
 					System.out.println("phone number :");
 					phone_number=sc.next();
-					ad1[i].edit(fname,lname,city,address ,zip ,email ,phone_number);
+					obj.edit(fname,lname,city,address ,zip ,email ,phone_number);
 		    	  }
 		    	  else {
 		    		  System.out.println("name not found");
@@ -100,14 +110,32 @@ public class addressbook {
 		{
 			System.out.println("no entries");
 		}
-			for(int j=0;j<n;j++)
+			for(int j=0;j<contact.size();j++)
 				{
+			    	addressbook obj=contact.get(j);
 					System.out.println("display contents");
-					ad1[j].display();
+					System.out.println("Person "+j);
+					obj.display();
 				}
 		          break;
+		case 4:
+			System.out.println("enter the name to be deleted");
+			String dname=sc.next();
+			for(int i=0;i<contact.size();i++)
+			{
+				addressbook obj=contact.get(i);
+			if(obj.fname.equals(dname))
+			{
+				delete(obj);
+				
+			}
+			else {
+				System.out.println("not found");
+			}
+			}
+			break;
 		default:c=1;
-		        		  break;
+		         break;
 		}
 
 		}
