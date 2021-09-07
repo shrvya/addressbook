@@ -1,16 +1,17 @@
 package addressbook;
-<<<<<<< HEAD
 
-=======
->>>>>>> multiaddress
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
  * this class will allow to add ,edit,delete,display contacts in a address book
+ * it has variables fname, lname, city, address, zip, email, phone_number
+ * fname holds first name,lname holds last name
+ * city,address holds address details,email holds email 
+ * password holds password
  */
 public class addressbook {
-<<<<<<< HEAD
+
 	public static int n = 0;
 	Scanner sc = new Scanner(System.in);
 
@@ -131,135 +132,7 @@ public class addressbook {
 			if (object.fname.equals(name11)) {
 
 				contact.remove(object);
-
-=======
-	
-	public static int n=0;
-	static Scanner sc=new Scanner(System.in);
-	
-	public static ArrayList<addressbook>contact=new ArrayList<>();
-	
-	public String  fname,lname,city,address,zip,email,phone_number;
-	
-	public addressbook( String fname, String lname, String city, String address, String zip, String email, String phone_number)
-	{
-		this.fname=fname;
-		this.lname=lname;
-		this.city=city;
-		this.address=address;
-		this.zip=zip;
-		this.email=email;
-		this.phone_number=phone_number;	
-	}
-	
-	
-	public addressbook() {
-		// TODO Auto-generated constructor stub
-		
-		
-	}
-	
-	
-	
-
-	
-	
-		public void addcontact() {
-			addressbook obj=new addressbook();
-			System.out.println("Add the details");
-		
-			System.out.println("First name1 :");
-			fname=sc.next();
-			System.out.println("Last name :");
-			lname=sc.next();
-			System.out.println("City name :");
-			city=sc.next();
-			System.out.println("address :");
-			address=sc.next();
-			System.out.println("zip :");
-			zip=sc.next();
-			System.out.println("email :");
-			email=sc.next();
-			System.out.println("phone number :");
-			phone_number=sc.next();
-			contact.add(new addressbook(fname,lname,city,address,zip,email,phone_number));
-		}
-		
-		
-			public void editcontact() {
-		  System.out.println("enter the name of person you want to edit");
-		      String name=sc.next();
-		      
-		      for(int i=0;i<contact.size();i++)//loop to enter n values
-				{
-		    	  addressbook obj=contact.get(i);
-		    	  if(obj.fname.equals(name)) 
-		    	  {
-					System.out.println("First name :");
-					obj.fname=sc.next();
-					System.out.println("Last name :");
-					obj.lname=sc.next();
-					System.out.println("City name :");
-					obj.city=sc.next();
-					System.out.println("address :");
-					obj.address=sc.next();
-					System.out.println("zip :");
-					obj.zip=sc.next();
-					System.out.println("email :");
-					obj.email=sc.next();
-					System.out.println("phone number :");
-					obj.phone_number=sc.next();
-					
-		    	  }
-		    	  else {
-		    		  System.out.println("name not found");
-		    	  }	
-				}
-			}
-			
-			
-		     public void displaycontact()
-		     {
-		       if(n==0)
-		       {
-			     System.out.println("no entries");
-		       }
-			for(int j=0;j<contact.size();j++)
-				{
-			    	addressbook obj=contact.get(j);
-					System.out.println("display contents");
-					System.out.println("Person "+j);
-					System.out.println("first name is :"+obj.fname);
-					System.out.println("last name is :"+obj.lname);
-					System.out.println("city name is :"+obj.city);
-					System.out.println("address is :"+obj.address);
-					System.out.println("zip is :"+obj.zip);
-					System.out.println("email is :"+obj.email);
-					System.out.println("phone number  is :"+obj.phone_number);
-				}
-		     }
-
-		public void deletecontact() {
-			System.out.println("enter the name to be deleted");
-			String dname=sc.next();
-			for(int i=0;i<contact.size();i++)
-			{
-				addressbook obj=contact.get(i);
-			if(obj.fname.equals(dname))
-			{
-				contact.remove(obj);
-				System.out.println("deleted");
-				
-			}
-			else {
-				System.out.println("not found");
-			}
->>>>>>> multiaddress
 			}
 		}
-		
-
-		
-
 	}
-
+}
