@@ -38,6 +38,22 @@ public class addressbook {
 	}
 
 	/*
+	 * this method will aloow user to find people living in particular city it will
+	 * display name of people living in particular city
+	 */
+	public void findPerson() {
+		System.out.println("Enter the city");
+		String fcity = sc.next();
+		for (int i = 0; i < contact.size(); i++) {
+			addressbook value = contact.get(i);
+			System.out.println("People in the city are!");
+			if (value.city.equals(fcity)) {
+				System.out.println(value.fname + " " + value.lname);
+			}
+		}
+	}
+
+	/*
 	 * this is a method to check for duplicate name it will compare entered name
 	 * with name in the address book
 	 */

@@ -26,6 +26,8 @@ public class MultiAddress {
 		case 4:
 			obj.deleteContact();
 			break;
+		case 7:obj.findPerson();
+		      break;
 
 		}
 	}
@@ -42,7 +44,7 @@ public class MultiAddress {
 		String addname = " ";
 
 		while (counter != 1) {
-			System.out.println("enter the choice 1.Add 2.edit 3.Display 4.delete 5.add addressbook 6.exit");
+			System.out.println("enter the choice 1.Add 2.edit 3.Display 4.delete 5.add addressbook 6.exit 7. city");
 			choice = sc.nextInt();
 			if (choice == 5) {
 
