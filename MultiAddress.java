@@ -46,7 +46,7 @@ public class MultiAddress {
 			choice = sc.nextInt();
 			if (choice == 5) {
 
-				System.out.println("Enetr addressbook name");
+				System.out.println("Enter addressbook name");
 				addressbook obj1 = new addressbook();
 				addname = sc.next();
 				multiaddress.put(addname, obj1);
@@ -55,7 +55,7 @@ public class MultiAddress {
 				System.out.println("exited");
 
 			} else {
-				System.out.println("Enter addressbook name1::");
+				System.out.println("Enter addressbook name::");
 				addname = sc.next();
 				choose(choice, multiaddress.get(addname));
 			}

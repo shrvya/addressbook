@@ -1,6 +1,7 @@
 package addressbook;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /*
@@ -37,6 +38,22 @@ public class addressbook {
 	}
 
 	/*
+	 * this is a method to check for duplicate name it will compare entered name
+	 * with name in the address book
+	 */
+	public boolean duplicate(String name) {
+		for (int i = 0; i < contact.size(); i++) {
+			addressbook value = contact.get(i);
+
+			if (value.fname.equals(name)) {
+				System.out.println("Firstname already exists!!!!");
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/*
 	 * this method is used to insert information into address book info like first
 	 * ,last name,email,phone number etc can be inserted into address book
 	 */
@@ -45,20 +62,21 @@ public class addressbook {
 
 		System.out.println("First name :");
 		fname = sc.next();
-		System.out.println("Last name :");
-		lname = sc.next();
-		System.out.println("City name :");
-		city = sc.next();
-		System.out.println("address :");
-		address = sc.next();
-		System.out.println("zip :");
-		zip = sc.next();
-		System.out.println("email :");
-		email = sc.next();
-		System.out.println("phone number :");
-		phone_number = sc.next();
-		contact.add(new addressbook(fname, lname, city, address, zip, email, phone_number));
-
+		if (duplicate(fname) == false) {
+			System.out.println("Last name :");
+			lname = sc.next();
+			System.out.println("City name :");
+			city = sc.next();
+			System.out.println("address :");
+			address = sc.next();
+			System.out.println("zip :");
+			zip = sc.next();
+			System.out.println("email :");
+			email = sc.next();
+			System.out.println("phone number :");
+			phone_number = sc.next();
+			contact.add(new addressbook(fname, lname, city, address, zip, email, phone_number));
+		}
 	}
 
 	/*
