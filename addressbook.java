@@ -1,7 +1,13 @@
 package addressbook;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /*
@@ -18,6 +24,7 @@ public class addressbook {
 
 	public ArrayList<addressbook> contact = new ArrayList<>();
 	public String fname, lname, city, address, zip, email, phone_number;
+	Dictionary<String, String> dict = new Hashtable();
 
 	/*
 	 * this is a constructor to initialize parameters
@@ -51,6 +58,30 @@ public class addressbook {
 				System.out.println(value.fname + " " + value.lname);
 			}
 		}
+	}
+/*
+ * this is a method to group people by city
+ */
+	public void dictionary() {
+		Map<String, List<String>> pcity = new HashMap<>();
+		for (int j = 0; j < contact.size(); j++) {
+			addressbook info = contact.get(j);
+			if (pcity.containsKey(info.city)) {
+				List<String> temp = pcity.get(info.city);
+				temp.add(info.fname);
+				pcity.put(info.city, temp);
+			} else {
+				List<String> temp = new ArrayList<>();
+				temp.add(info.fname);
+				pcity.put(info.city, temp);
+			}
+		}
+		for (Map.Entry m : pcity.entrySet()) {
+
+			System.out.println(m.getKey() + " : " + m.getValue());
+
+		}
+
 	}
 
 	/*
@@ -92,6 +123,7 @@ public class addressbook {
 			System.out.println("phone number :");
 			phone_number = sc.next();
 			contact.add(new addressbook(fname, lname, city, address, zip, email, phone_number));
+			dict.put(city, fname);
 		}
 	}
 

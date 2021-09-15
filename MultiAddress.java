@@ -1,6 +1,7 @@
 package addressbook;
 
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MultiAddress {
@@ -26,9 +27,9 @@ public class MultiAddress {
 		case 4:
 			obj.deleteContact();
 			break;
-		case 7:obj.findPerson();
-		      break;
-
+		case 7:
+			obj.findPerson();
+			break;
 		}
 	}
 
@@ -44,7 +45,8 @@ public class MultiAddress {
 		String addname = " ";
 
 		while (counter != 1) {
-			System.out.println("enter the choice 1.Add 2.edit 3.Display 4.delete 5.add addressbook 6.exit 7. city");
+			System.out.println(
+					"enter the choice 1.Add 2.edit 3.Display 4.delete 5.add addressbook 6.exit 7. city 8.view by city");
 			choice = sc.nextInt();
 			if (choice == 5) {
 
@@ -55,8 +57,16 @@ public class MultiAddress {
 			} else if (choice == 6) {
 				counter = 1;
 				System.out.println("exited");
+			} else if (choice == 8) {
+				for (Map.Entry<String, addressbook> entry : multiaddress.entrySet()) {
+					addressbook add = entry.getValue();
 
-			} else {
+					System.out.println("addressbook is ::" + entry.getKey());
+					add.dictionary();
+				}
+			}
+
+			else {
 				System.out.println("Enter addressbook name::");
 				addname = sc.next();
 				choose(choice, multiaddress.get(addname));
