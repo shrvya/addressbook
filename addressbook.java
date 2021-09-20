@@ -6,9 +6,11 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /*
  * this class will allow to add ,edit,delete,display contacts in a address book
@@ -59,10 +61,12 @@ public class addressbook {
 			}
 		}
 	}
-/*
- * this is a method to group people by city
- */
+
+	/*
+	 * this is a method to group people by city
+	 */
 	public void dictionary() {
+		int count = 0;
 		Map<String, List<String>> pcity = new HashMap<>();
 		for (int j = 0; j < contact.size(); j++) {
 			addressbook info = contact.get(j);
@@ -79,7 +83,7 @@ public class addressbook {
 		for (Map.Entry m : pcity.entrySet()) {
 
 			System.out.println(m.getKey() + " : " + m.getValue());
-
+			System.out.println("people in city" + m.getKey() + "is " + ((List<String>) m.getValue()).size());
 		}
 
 	}
@@ -199,6 +203,27 @@ public class addressbook {
 
 				contact.remove(object);
 			}
+		}
+	}
+
+	public void sortname() {
+		Map<String, addressbook> map = new HashMap<String, addressbook>();
+		for (int index = 0; index < contact.size(); index++) {
+			addressbook ad = contact.get(index);
+			map.put(ad.fname, ad);
+		}
+		Map<String, addressbook> sort = map.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors
+				.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+		for (Map.Entry<String, addressbook> entry : sort.entrySet()) {
+			System.out.println("First Name:" + entry.getValue().fname);
+			System.out.println("Last Name:" + entry.getValue().lname);
+			System.out.println("Address:" + entry.getValue().address);
+			System.out.println("City:" + entry.getValue().city);
+
+			System.out.println("Zip:" + entry.getValue().zip);
+			System.out.println("Phone number:" + entry.getValue().phone_number);
+			System.out.println("E-mail:" + entry.getValue().email);
+
 		}
 	}
 }

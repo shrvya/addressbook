@@ -64,6 +64,12 @@ public class MultiAddress {
 					System.out.println("addressbook is ::" + entry.getKey());
 					add.dictionary();
 				}
+			} else if (choice == 11) {
+				for (Map.Entry<String, addressbook> entry : multiaddress.entrySet()) {
+					addressbook object1 = entry.getValue();
+					System.out.println("Addressbook:" + entry.getKey());
+					object1.sortname();
+				}
 			}
 
 			else {
