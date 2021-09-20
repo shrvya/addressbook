@@ -46,7 +46,7 @@ public class MultiAddress {
 
 		while (counter != 1) {
 			System.out.println(
-					"enter the choice 1.Add 2.edit 3.Display 4.delete 5.add addressbook 6.exit 7. city 8.view by city");
+					"enter the choice 1.Add 2.edit 3.Display 4.delete 5.add addressbook 6.exit 7. city 8.view by city,9.sort by name,10.sort by city/zip");
 			choice = sc.nextInt();
 			if (choice == 5) {
 
@@ -64,11 +64,21 @@ public class MultiAddress {
 					System.out.println("addressbook is ::" + entry.getKey());
 					add.dictionary();
 				}
-			} else if (choice == 11) {
+			} else if (choice == 9) {
 				for (Map.Entry<String, addressbook> entry : multiaddress.entrySet()) {
 					addressbook object1 = entry.getValue();
 					System.out.println("Addressbook:" + entry.getKey());
 					object1.sortname();
+				}
+			}
+
+			else if (choice == 10) {
+				System.out.println("sort By 1city 2.zip");
+				int option = sc.nextInt();
+				for (Map.Entry<String, addressbook> entry : multiaddress.entrySet()) {
+					addressbook object1 = entry.getValue();
+					System.out.println("Addressbook:" + entry.getKey());
+					object1.sortPersonByNameCityStateZip(option);
 				}
 			}
 

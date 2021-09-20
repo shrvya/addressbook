@@ -206,6 +206,9 @@ public class addressbook {
 		}
 	}
 
+	/*
+	 * this is a method to sort name of person using streams
+	 */
 	public void sortname() {
 		Map<String, addressbook> map = new HashMap<String, addressbook>();
 		for (int index = 0; index < contact.size(); index++) {
@@ -224,6 +227,57 @@ public class addressbook {
 			System.out.println("Phone number:" + entry.getValue().phone_number);
 			System.out.println("E-mail:" + entry.getValue().email);
 
+		}
+	}
+/*
+ * this method is used to sort by city or zip depending on user option
+ */
+	public void sortcityzip(int option) {
+		Map<String, List<addressbook>> map = new HashMap<>();
+		if (option == 1) {
+			for (int j = 0; j < contact.size(); j++) {
+				addressbook object = contact.get(j);
+				if (map.containsKey(object.city)) {
+					List<addressbook> temp = map.get(object.city);
+					temp.add(object);
+					map.put(object.city, temp);
+				} else {
+					List<addressbook> temp = new ArrayList<>();
+					temp.add(object);
+					map.put(object.city, temp);
+				}
+			}
+		} else if (option == 2) {
+			for (int j = 0; j < contact.size(); j++) {
+				addressbook object = contact.get(j);
+				if (map.containsKey(object.zip)) {
+					List<addressbook> temp = map.get(object.zip);
+					temp.add(object);
+					map.put(object.zip, temp);
+				} else {
+					List<addressbook> temp = new ArrayList<>();
+					temp.add(object);
+					map.put(object.zip, temp);
+				}
+			}
+		} else {
+			System.out.println("enter right option");
+		}
+		Map<String, List<addressbook>> sortedMap = map.entrySet().stream().sorted(Map.Entry.comparingByKey())
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
+						LinkedHashMap::new));
+		for (Map.Entry<String, List<addressbook>> entry : sortedMap.entrySet()) {
+			for (addressbook a : entry.getValue()) {
+				System.out.println("First Name:" + a.fname);
+				System.out.println("Last Name:" + a.lname);
+				System.out.println("Address:" + a.address);
+				System.out.println("City:" + a.city);
+
+				System.out.println("Zip:" + a.zip);
+				System.out.println("Phone number:" + a.phone_number);
+				System.out.println("E-mail:" + a.email);
+				
+			}
 		}
 	}
 }
