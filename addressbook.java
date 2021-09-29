@@ -1,5 +1,8 @@
 package addressbook;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -61,6 +64,31 @@ public class addressbook {
 			}
 		}
 	}
+	  public void writeFile(String file) {
+	        try {
+	            FileWriter writer = new FileWriter(file+".txt");
+	            for (int j=0;j<contact.size();j++)
+	            {
+	                addressbook object=contact.get(j);
+	                writer.write("\nfirstname:"+object.fname+"\nlastname:"+object.lname+
+	                        "\naddress:"+object.address+"\ncity:"+object.city
+	                        +"\nzip:"+object.zip+"\nphone number:"+object.phone_number+"\nemail:"
+	                        +object.email+"\n");
+	            }
+	            writer.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }    
+	    }
+	    
+	    public void readFile(String file) throws IOException
+	    {
+	        FileReader fr =new FileReader(file+".txt");
+	              int i;
+	              while ((i=fr.read()) != -1)
+	                System.out.print((char) i);
+	    }
+	    
 
 	/*
 	 * this is a method to group people by city

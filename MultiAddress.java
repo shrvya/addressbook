@@ -1,5 +1,6 @@
 package addressbook;
 
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Scanner;
@@ -33,7 +34,7 @@ public class MultiAddress {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
 		addressbook obj = new addressbook();
@@ -46,7 +47,8 @@ public class MultiAddress {
 
 		while (counter != 1) {
 			System.out.println(
-					"enter the choice 1.Add 2.edit 3.Display 4.delete 5.add addressbook 6.exit 7. city 8.view by city,9.sort by name,10.sort by city/zip");
+					"enter the choice 1.Add 2.edit 3.Display 4.delete 5.add addressbook 6.exit 7. city 8.view by city,"
+					+ "9.sort by name,10.sort by city/zip,11.Add to file,n12.read from file");
 			choice = sc.nextInt();
 			if (choice == 5) {
 
@@ -78,9 +80,21 @@ public class MultiAddress {
 				for (Map.Entry<String, addressbook> entry : multiaddress.entrySet()) {
 					addressbook object1 = entry.getValue();
 					System.out.println("Addressbook:" + entry.getKey());
-					object1.sortPersonByNameCityStateZip(option);
+					object1.sortcityzip(option);
 				}
 			}
+			 else if(choice==12)
+	            {
+	                System.out.println("Enter the addressbook which you want to add into file!!");
+	                String AddressBook=sc.next();
+	                multiaddress.get(AddressBook).writeFile(AddressBook);
+	            }
+	            else if(choice==13)
+	            {
+	                System.out.println("Enter the addressbook which you waant to read");
+	                String AddressBook=sc.next();
+	                multiaddress.get(AddressBook).readFile(AddressBook);
+	            }
 
 			else {
 				System.out.println("Enter addressbook name::");
